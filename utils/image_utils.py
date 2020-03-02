@@ -26,3 +26,5 @@ class ImageLoader:
         except IOError:
             # Potentially a decoding problem, fall back to PIL.Image
             return ImageLoader.pil_loader(path)
+
+
