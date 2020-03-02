@@ -38,7 +38,7 @@ def assure_numpy_reproducibility(seed: int):
     np.random.seed(seed)
 
 
-def set_device(disable_cuda):
+def set_device(disable_cuda=False):
     """
     Returns the device chosen (if disable_cuda is False, CUDA will be chosen if available)
     Source: https://pytorch.org/docs/stable/notes/cuda.html
