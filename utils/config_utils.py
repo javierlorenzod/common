@@ -137,4 +137,10 @@ def get_cnn_extractor_model_name(conf):
         chosen_submodel = conf.Model.CNN.model_variants_list[m_f_id][c_s_id]
         cnn_extractor_model_name = f"{chosen_family}{chosen_submodel}"
         cnn_extractor_input_size = 224  # square input
+    elif chosen_family == "resnext":
+        # Check if chosen submodel ID is valid
+        n_submodels = len(conf.Model.CNN.model_variants_list[m_f_id])
+        chosen_submodel = conf.Model.CNN.model_variants_list[m_f_id][c_s_id]
+        cnn_extractor_model_name = f"{chosen_family}{chosen_submodel}"
+        cnn_extractor_input_size = 224 # square input
     return cnn_extractor_model_name
