@@ -35,3 +35,7 @@ def timing(f):
 def get_current_time_str():
     now = datetime.datetime.now()
     return now.strftime("%d%m%y_%H%M%S")
+
+def get_current_time_str_itsc2020():
+    now = datetime.datetime.now()
+    return now.strftime("%y%m%d_%H%M%S")
