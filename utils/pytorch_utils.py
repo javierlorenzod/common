@@ -2,6 +2,7 @@ from functools import reduce
 import torch
 from loguru import logger
 import numpy as np
+import random
 import os
 
 
@@ -18,9 +19,9 @@ def activate_reproducibility(seed=0):
     Function called at the beginning of training. Needed to have the same random seeds for all trainings and because
     of that, adquire the same results for the same parameters.
     """
-    torch.manual_seed(seed)
+    random.seed(seed)
     np.random.seed(seed)
-    torch.backends.cudnn.enabled = True
+    torch.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
