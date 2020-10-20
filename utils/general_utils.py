@@ -1,6 +1,7 @@
-import sys
 import os
+import sys
 from loguru import logger
+
 
 # From https://stackoverflow.com/questions/3041986/apt-command-line-interface-like-yes-no-input
 def query_yes_no(question, default="yes"):

@@ -1,9 +1,10 @@
 """
 Copied from /home/jld/git-repos/VRU-detection-classification/pedestrian_action_recognition/simple_labeler/trig.py but modified
 """
+import math
 # TODO: Order functions and create a general functions module used by several projects
 from enum import Enum, unique
-import math
+
 
 @unique
 class Bb(Enum):

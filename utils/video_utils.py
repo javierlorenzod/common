@@ -1,6 +1,8 @@
 import image_utils as img_u
-import pickle
 import os.path
+import pickle
+
+
 # Following staticmethods taken from https://github.com/kenshohara/3D-ResNets-PyTorch/blob/master/datasets/hmdb51.py
 
 class VideoLoader:

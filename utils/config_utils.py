@@ -16,11 +16,10 @@ __email__ = '{contact_email}'
 __status__ = '{dev_status}'
 
 import logging
-import random as rn
+import numpy as np
 import os
 import pickle as pkl
-
-import numpy as np
+import random as rn
 import torch
 import yaml
 

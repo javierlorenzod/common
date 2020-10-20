@@ -17,8 +17,8 @@ __status__ = '{dev_status}'
 
 import matplotlib.pyplot as plt
 import numpy as np
-import random as rn
 import os
+import random as rn
 import torch.nn as nn
 
 plt.style.use('ggplot')

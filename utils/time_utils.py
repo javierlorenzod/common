@@ -15,9 +15,9 @@ __maintainer__ = '{maintainer}'
 __email__ = '{contact_email}'
 __status__ = '{dev_status}'
 
-from time import time, strftime, gmtime
 import datetime
 from loguru import logger
+from time import time, strftime, gmtime
 
 
 def timing(f):

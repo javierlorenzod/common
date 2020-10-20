@@ -1,9 +1,9 @@
-from functools import reduce
-import torch
-from loguru import logger
 import numpy as np
-import random
 import os
+import random
+import torch
+from functools import reduce
+from loguru import logger
 
 
 def pytorch_count_params(model):
