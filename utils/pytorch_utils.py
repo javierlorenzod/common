@@ -5,6 +5,31 @@ import torch
 from functools import reduce
 from loguru import logger
 
+def resize_imgs_keeping_aspect_ratio(img_list, new_size=512, background_value=0, device="cpu"):
+    """
+    Code mainly based on
+     https://discuss.pytorch.org/t/resize-images-torch-tensor-already-loaded-on-gpu-keeping-their-aspect-ratio/83172/9
+    :param img_list: list of images, previously in FloatTensor format, each with size [C, H, W]
+    :param new_size: input size of the model. It is assumed that it is square
+    :param background_value: value of the padding pixels. In the example is 126 (medium gray)
+    :param device: device in which all the processing is done
+    :return:
+    """
+    tensor_imgs = torch.stack(img_list, dim=0).to(device)  # Size: [B, C, H, W] where N is the number of images or batch size
+    tensor_height, tensor_width = tensor_imgs.shape[2:4]
+    batch_size = tensor_imgs.shape[0]
+    tall = True if tensor_height >= tensor_width else False
+    coef = new_size / float(tensor_height) if tall else new_size / float(tensor_width)
+    new_dimension = (new_size, int(tensor_width * coef)) if tall else (int(tensor_height * coef), new_size)
+    y = torch.nn.functional.interpolate(tensor_imgs, new_dimension)
+    res = torch.ones(batch_size, 3, new_size, new_size) * background_value
+    margin = (new_size - new_dimension[1]) // 2 if tall else (new_size - new_dimension[0]) // 2
+    if tall:
+        res[:, :, :, margin:new_size - margin] = y
+    else:
+        res[:, :, margin:new_size - margin, :, ] = y
+    return res
+
 
 def pytorch_count_params(model):
     """
