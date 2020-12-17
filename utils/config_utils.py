@@ -19,7 +19,7 @@ import logging
 import numpy as np
 import os
 import pickle as pkl
-import random as rn
+import random
 import torch
 import yaml
 
@@ -42,6 +42,11 @@ def load_values_from_file(file_path):
 # https://stackoverflow.com/questions/1305532/convert-nested-python-dict-to-object?page=1&tab=votes#tab-top
 class nested_dict_to_object(object):
     def __init__(self, d):
+        """Object used to convert a nested dictionary to an object with all keys and values as parameters, for easy dot access
+
+        Args:
+            d (dict): Nested dictionary to be converted.
+        """
         for a, b in d.items():
             if isinstance(b, (list, tuple)):
                 setattr(self, a, [nested_dict_to_object(x) if isinstance(x, dict) else x for x in b])
@@ -50,10 +55,10 @@ class nested_dict_to_object(object):
 
 
 def set_random_seeds(random_seed):
-    np.random.seed(random_seed)
-    # torch.backends.cudnn.deterministic = True
-    torch.manual_seed(random_seed)
-    rn.seed(random_seed)
+    
+    np.random.seed(random_seed)  # numpy random seed
+    torch.manual_seed(random_seed)  # Pytorch random seed
+    random.seed(random_seed)  # Python random seed
 
 def check_configuration_arguments(args, kwds):
     cfg_file_path = None
